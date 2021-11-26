@@ -33,7 +33,6 @@ resource "aws_route_table" "MainRT" {
   }
 }
 
-
 #PUBLIC-Subnet
 resource "aws_subnet" "PublicSubnet1A" {
   availability_zone = "eu-west-1a"
@@ -99,8 +98,6 @@ resource "aws_route_table_association" "Private1a" {
 }
 
 
-
-
 # SecurityGroup to allow port 22,80,443
 resource "aws_security_group" "allow_web" {
   name        = "allow_web_traffic"
@@ -138,25 +135,6 @@ resource "aws_security_group" "allow_web" {
   }
 }
 
-resource "aws_instance" "Public-ssh-Server" {
-  ami               = "ami-09ce2fc392a4c0fbc"
-  instance_type     = "t2.micro"
-  availability_zone = "eu-west-1a"
-  key_name          = "public_key"
-  subnet_id     = aws_subnet.PublicSubnet1A.id
-  vpc_security_group_ids = ["sg-01c19772c6464b563"]
-  
-  user_data = <<-EOF
-                #!/bin/bash
-                sudo apt update -y
-                sudo apt install apache2 -y
-                sudo systemctl start apache2
-                sudo bash -c 'echo your very first web server > /var/www/html/index.html'
-                EOF
-  tags = {
-    Name = "Public-ssh-Server"
-  }
-}
 
 resource "aws_instance" "Shane" {
   ami               = "ami-09ce2fc392a4c0fbc"
@@ -236,5 +214,47 @@ resource "aws_instance" "Courtney" {
                 EOF
   tags = {
     Name = "Courtney"
+  }
+}
+
+resource "aws_instance" "Mo" {
+  ami               = "ami-09ce2fc392a4c0fbc"
+  instance_type     = "t2.micro"
+  availability_zone = "eu-west-1a"
+  key_name          = "zoo-VPC"
+  subnet_id     = aws_subnet.PrivateSubnet1A.id
+  vpc_security_group_ids = ["sg-01c19772c6464b563"]
+  
+  user_data = <<-EOF
+                #!/bin/bash
+                sudo apt update -y
+                sudo apt install apache2 -y
+                sudo systemctl start apache2
+                sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+                EOF
+  tags = {
+    Name = "Mo"
+  }
+}
+
+#Bastion host : 
+
+resource "aws_instance" "JumpServer" {
+  ami               = "ami-09ce2fc392a4c0fbc"
+  instance_type     = "t2.micro"
+  availability_zone = "eu-west-1a"
+  key_name          = "public_key"
+  subnet_id     = aws_subnet.PublicSubnet1A.id
+  vpc_security_group_ids = ["sg-01c19772c6464b563"]
+  
+  user_data = <<-EOF
+                #!/bin/bash
+                sudo apt update -y
+                sudo apt install apache2 -y
+                sudo systemctl start apache2
+                sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+                EOF
+  tags = {
+    Name = "JumpHost"
   }
 }
