@@ -142,7 +142,7 @@ resource "aws_instance" "Shane" {
   availability_zone = "eu-west-1a"
   key_name          = "zoo-VPC"
   subnet_id     = aws_subnet.PrivateSubnet1A.id
-  vpc_security_group_ids = ["sg-01c19772c6464b563"]
+  vpc_security_group_ids = ["sg-0db3be8167b5f1c2b"]
   
   user_data = <<-EOF
                 #!/bin/bash
@@ -150,6 +150,10 @@ resource "aws_instance" "Shane" {
                 sudo apt install apache2 -y
                 sudo systemctl start apache2
                 sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+                echo "added a line!!"
+                var1=$(< input.txt)
+                ((var1=var1+1))
+                echo $var1 > input.txt
                 EOF
   tags = {
     Name = "Shane"
@@ -163,7 +167,7 @@ resource "aws_instance" "Victor" {
   availability_zone = "eu-west-1a"
   key_name          = "zoo-VPC"
   subnet_id     = aws_subnet.PrivateSubnet1A.id
-  vpc_security_group_ids = ["sg-01c19772c6464b563"]
+  vpc_security_group_ids = ["sg-0db3be8167b5f1c2b"]
   
   user_data = <<-EOF
                 #!/bin/bash
@@ -171,6 +175,10 @@ resource "aws_instance" "Victor" {
                 sudo apt install apache2 -y
                 sudo systemctl start apache2
                 sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+                echo "added a line!!"
+                var1=$(< input.txt)
+                ((var1=var1+1))
+                echo $var1 > input.txt
                 EOF
   tags = {
     Name = "Victor"
@@ -183,7 +191,7 @@ resource "aws_instance" "Selene" {
   availability_zone = "eu-west-1a"
   key_name          = "zoo-VPC"
   subnet_id     = aws_subnet.PrivateSubnet1A.id
-  vpc_security_group_ids = ["sg-01c19772c6464b563"]
+  vpc_security_group_ids = ["sg-0db3be8167b5f1c2b"]
   
   user_data = <<-EOF
                 #!/bin/bash
@@ -191,6 +199,10 @@ resource "aws_instance" "Selene" {
                 sudo apt install apache2 -y
                 sudo systemctl start apache2
                 sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+                echo "added a line!!"
+                var1=$(< input.txt)
+                ((var1=var1+1))
+                echo $var1 > input.txt
                 EOF
   tags = {
     Name = "Selene"
@@ -203,7 +215,7 @@ resource "aws_instance" "Courtney" {
   availability_zone = "eu-west-1a"
   key_name          = "zoo-VPC"
   subnet_id     = aws_subnet.PrivateSubnet1A.id
-  vpc_security_group_ids = ["sg-01c19772c6464b563"]
+  vpc_security_group_ids = ["sg-0db3be8167b5f1c2b"]
   
   user_data = <<-EOF
                 #!/bin/bash
@@ -211,6 +223,10 @@ resource "aws_instance" "Courtney" {
                 sudo apt install apache2 -y
                 sudo systemctl start apache2
                 sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+                echo "added a line!!"
+                var1=$(< input.txt)
+                ((var1=var1+1))
+                echo $var1 > input.txt
                 EOF
   tags = {
     Name = "Courtney"
@@ -223,7 +239,7 @@ resource "aws_instance" "Mo" {
   availability_zone = "eu-west-1a"
   key_name          = "zoo-VPC"
   subnet_id     = aws_subnet.PrivateSubnet1A.id
-  vpc_security_group_ids = ["sg-01c19772c6464b563"]
+  vpc_security_group_ids = ["sg-0db3be8167b5f1c2b"]
   
   user_data = <<-EOF
                 #!/bin/bash
@@ -231,6 +247,10 @@ resource "aws_instance" "Mo" {
                 sudo apt install apache2 -y
                 sudo systemctl start apache2
                 sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+                echo "added a line!!"
+                var1=$(< input.txt)
+                ((var1=var1+1))
+                echo $var1 > input.txt
                 EOF
   tags = {
     Name = "Mo"
@@ -253,6 +273,10 @@ resource "aws_instance" "JumpServer" {
                 sudo apt install apache2 -y
                 sudo systemctl start apache2
                 sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+                echo "added a line!!"
+                var1=$(< input.txt)
+                ((var1=var1+1))
+                echo $var1 > input.txt
                 EOF
   tags = {
     Name = "JumpHost"
